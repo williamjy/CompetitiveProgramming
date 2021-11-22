@@ -17,8 +17,6 @@ public:
         if (obstacleGrid[i][j-1]) memo[j] = 0;
         else memo[j] += memo[j-1];
       }
-      for (auto i : memo) cout << i << " ";
-      cout << endl;
     }
     return memo[columns];
   }
