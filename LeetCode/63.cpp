@@ -13,9 +13,9 @@ public:
     vector<int> memo(columns+1,0);
     memo[1] = 1;
     for (int i = 0; i < rows; i++) {
-      for (int j = 1; j <= columns; j++) {
-        if (obstacleGrid[i][j-1]) memo[j] = 0;
-        else memo[j] += memo[j-1];
+      for (int j = 0; j < columns; j++) {
+        if (obstacleGrid[i][j]) memo[j+1] = 0;
+        else memo[j+1] += memo[j];
       }
     }
     return memo[columns];
