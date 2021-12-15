@@ -11,7 +11,7 @@ public:
     int n = triangle.size();
     vector<int> memo = triangle[n-1];
     for (int i = n - 2; i >= 0; i--) {
-      for (int j = 0; j < n; j++) {
+      for (int j = 0; j < triangle[i].size(); j++) {
         memo[j] = memo[j] < memo[j+1] ? memo[j] + triangle[i][j] : memo[j+1] + triangle[i][j];
       }
     }
