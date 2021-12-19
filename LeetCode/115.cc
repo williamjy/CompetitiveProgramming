@@ -5,7 +5,6 @@
 #include <algorithm>
 using namespace std;
 
-// double pointers
 class Solution {
 public:
   int numDistinct(string s, string t) {
