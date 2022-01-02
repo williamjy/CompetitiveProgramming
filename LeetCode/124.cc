@@ -25,10 +25,12 @@ public:
   }
   int rec(TreeNode* root) {
     if (root == nullptr) return 0;
-    int left = max(rec(root->left),0);
-    int right = max(rec(root->right),0);
-    maximum = max(maximum,left+root->val+right);
-    return max(left,right)+root->val;
+    int left = rec(root->left);
+    left = left > 0 ? left : 0;
+    int right = rec(root->right);
+    right = right > 0 ? right : 0;
+    maximum = maximum > left+root->val+right ? maximum : left+root->val+right;
+    return left > right ? left + root->val : right + root->val;
   }
 };
 
