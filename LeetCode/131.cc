@@ -29,12 +29,6 @@ public:
         }
       }
     }
-    for (auto a : memo) {
-      for (auto b : a) {
-        cout << b << " ";
-      }
-      cout << endl;
-    }
     return rec(0,s.size(),s);
   }
   vector<vector<string>> rec(int start, int end, string s) {
