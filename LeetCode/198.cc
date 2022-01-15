@@ -5,14 +5,13 @@ using namespace std;
 class Solution {
 public:
   int rob(vector<int>& nums) {
-    int prev3 = 0, prev2 = 0, prev1 = 0, curr = 0;
+    int prev2 = 0, prev1 = 0, tmp = 0;
     for (int i = 0; i < nums.size(); i++) {
-      prev3 = prev2;
-      prev2 = prev1;
-      prev1 = curr;
-      curr = prev3  > prev2 ? prev3 + nums[i] : prev2 + nums[i];
+      tmp = prev1;
+      prev1 = prev2 + nums[i] > prev1 ? prev2 + nums[i] : prev1;
+      prev2 = tmp;
     }
-    return prev1 > curr ? prev1 : curr;
+    return prev1 > prev2 ? prev1 : prev2;
   }
 };
 
