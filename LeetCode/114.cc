@@ -16,25 +16,25 @@ using namespace std;
 // []
 // [0]
 
-// class Solution {
-// private:
-//   TreeNode* prev;
-// public:
-//   void flatten(TreeNode* root) {
-//     if (root == NULL) return;
-//     prev = root;
-//     flatten(root->left);
-//     TreeNode* left = prev;
-//     flatten(root->right);
-//     TreeNode* right = prev;
-//     left->right = root->right;
-//     if (root->left != NULL) {
-//       root->right = root->left;
-//       root->left = NULL;
-//    }
-//     return;
-//   }
-// };
+class Solution {
+private:
+  TreeNode* prev;
+public:
+  void flatten(TreeNode* root) {
+    if (root == NULL) return;
+    prev = root;
+    flatten(root->left);
+    TreeNode* left = prev;
+    flatten(root->right);
+    TreeNode* right = prev;
+    left->right = root->right;
+    if (root->left != NULL) {
+      root->right = root->left;
+      root->left = NULL;
+   }
+    return;
+  }
+};
 
 int main () {
 }
