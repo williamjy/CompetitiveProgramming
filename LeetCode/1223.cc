@@ -28,7 +28,6 @@ public:
                 memo[n-1][prev_rng][times-1] += dp(n-1, rng, 1, rollMax, memo) % 1000000007;
             }
         }
-        auto total = memo[n-1][prev_rng][times-1];
         return memo[n-1][prev_rng][times-1] % 1000000007;
     }
 };
