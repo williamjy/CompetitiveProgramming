@@ -1,36 +1,31 @@
 #include <vector>
+#include <map>
+#include <stack>
 
 using namespace std;
 
 class Solution {
+private:
+    map<string, function<int (int, int)>> operatorMap = {
+        { "+" , [] (int a, int b) { return a + b; } },
+        { "-" , [] (int a, int b) { return a - b; } },
+        { "*" , [] (int a, int b) { return a * b; } },
+        { "/" , [] (int a, int b) { return a / b; } }
+    };
 public:
     int evalRPN(vector<string>& tokens) {
-        int position = tokens.size();
-        return dfs(tokens, position);
-    }
-    int dfs(vector<string>& tokens, int& position) {
-        position--;
-        if (position < 0) {
-            return 1;
-        }
-        string token = tokens[position];
-        if ((token[0] >= '0' && token[0] <= '9') || (token[0] == '-' && token.size() > 1)) {
-            if (token[0] == '-') {
-                return -stoi(token.substr(1, token.size() - 1));
+        stack<int> operatorStack;
+        for (auto token : tokens) {
+            if (operatorMap.find(token) != operatorMap.end()) {
+                int b = operatorStack.top();
+                operatorStack.pop();
+                int a = operatorStack.top();
+                operatorStack.pop();
+                operatorStack.push(operatorMap[token](a, b));
             } else {
-                return stoi(token);
+                operatorStack.push(stoi(token));
             }
         }
-        int first = dfs(tokens, position);
-        int second = dfs(tokens, position);
-        if (token[0] == '+') {
-            return first + second;
-        } else if (token[0] == '-') {
-            return second - first;
-        } else if (token[0] == '*') {
-            return first * second;
-        } else{
-            return second / first;
-        }
+        return operatorStack.top();
     }
 };
