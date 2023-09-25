@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+SELECT id - 1 AS id, student FROM Seat WHERE id % 2 = 0 UNION SELECT id + 1 AS id, student FROM Seat WHERE id % 2 = 1 AND id NOT IN (SELECT MAX(id) FROM Seat) UNION SELECT id, student FROM Seat WHERE id % 2 = 1 AND id IN (SELECT MAX(id) FROM Seat) ORDER BY id ASC;
